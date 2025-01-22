@@ -58,7 +58,7 @@ function App() {
         <Row>
           <Col md={6} lg={5} className="mb-3">
             <Form.Group controlId="formFile1">
-              <Form.Label>Select pierwszy obrazek (JPG/PNG)</Form.Label>
+              <Form.Label>Wybierz pierwszy obrazek (JPG/PNG)</Form.Label>
               <Form.Control
                 type="file"
                 accept="image/jpeg, image/png"
@@ -83,7 +83,7 @@ function App() {
               disabled={loading}
               className="w-100"
             >
-              {loading ? 'Przetwarzanie...' : 'Prześlij'}
+              {loading ? 'Przetwarzanie...' : 'Przetwórz'}
             </Button>
           </Col>
         </Row>
