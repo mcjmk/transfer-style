@@ -12,7 +12,8 @@ Wcześniej wspomniany transfer stylu polega na generacji obrazu na podstawie dw�
 
 ### Algorytm uczenia maszynowego
 
-Planujemy wykorzystać algorytm uczenia głębokiego, opartego o architekturę encoder-decoder i mechanizm uwagi (attention mechanism). Algorytm wzorowany jest na architekturze AdaAttN ([https://arxiv.org/abs/2108.03647](https://arxiv.org/abs/2108.03647))
+Planujemy wykorzystać algorytm uczenia głębokiego, opartego o architekturę encoder-decoder.
+Algorytm wzorowany jest na architekturze AdaIN z artykułu "Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization"[Huang+, ICCV2017].
 
 ### Trenowanie modelu
 

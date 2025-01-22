@@ -2,7 +2,7 @@ import numpy as np
 from torch.utils import data
 
 
-def InfiniteSampler(n):
+def StartSampling(n):
     i = n - 1
     order = np.random.permutation(n)
     while True:
@@ -14,12 +14,12 @@ def InfiniteSampler(n):
             i = 0
 
 
-class InfiniteSamplerWrapper(data.sampler.Sampler):
+class Sampler(data.sampler.Sampler):
     def __init__(self, data_source):
         self.num_samples = len(data_source)
 
     def __iter__(self):
-        return iter(InfiniteSampler(self.num_samples))
+        return iter(StartSampling(self.num_samples))
 
     def __len__(self):
         return 2 ** 31

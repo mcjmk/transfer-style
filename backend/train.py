@@ -11,12 +11,11 @@ from torchvision import transforms
 from tqdm import tqdm
 
 import neural_net as neural_net
-from sampler import InfiniteSamplerWrapper
+from auto_sampler import Sampler
 
 cudnn.benchmark = True
 Image.MAX_IMAGE_PIXELS = None  # Disable DecompressionBombError
-# Disable OSError: image file is truncated
-ImageFile.LOAD_TRUNCATED_IMAGES = True
+ImageFile.LOAD_TRUNCATED_IMAGES = True # Disable OSError: image file is truncated
 
 
 def train_transform():
@@ -102,11 +101,11 @@ style_dataset = FlatFolderDataset(args.style_dir, style_tf)
 
 content_iter = iter(data.DataLoader(
     content_dataset, batch_size=args.batch_size,
-    sampler=InfiniteSamplerWrapper(content_dataset),
+    sampler=Sampler(content_dataset),
     num_workers=args.n_threads))
 style_iter = iter(data.DataLoader(
     style_dataset, batch_size=args.batch_size,
-    sampler=InfiniteSamplerWrapper(style_dataset),
+    sampler=Sampler(style_dataset),
     num_workers=args.n_threads))
 
 optimizer = torch.optim.Adam(network.decoder.parameters(), lr=args.lr)
