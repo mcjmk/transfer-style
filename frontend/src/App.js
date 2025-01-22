@@ -28,36 +28,54 @@ function App() {
     } else {
       setFile(null);
       setImageUrl(null);
-      setError("Proszę wybrać plik typu JPG lub PNG.");
+      setError("Please select a file of type JPG or PNG.");
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!file1 || !file2) {
-      setError("Proszę wybrać oba pliki.");
+      setError("Please select both images.");
       return;
     }
     setError("");
     setLoading(true);
     setResultImage(null);
 
-    setTimeout(() => {
+    const formData = new FormData();
+    formData.append("content_image", file1);
+    formData.append("style_image", file2);
+
+    try {
+      const response = await fetch("api/style-transfer/", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to process the images. Please try again.");
+      }
+
+      const blob = await response.blob();
+      const resultImageUrl = URL.createObjectURL(blob);
+      setResultImage(resultImageUrl);
+    } catch (err) {
+      setError(err.message);
+    } finally {
       setLoading(false);
-      setResultImage(process.env.PUBLIC_URL + "/result.jpg");
-    }, 10000);
+    }
   };
 
   return (
     <Container className="my-5">
-      <h1 className="mb-4">Transfer-Style</h1>
+      <h1 className="mb-4">Style Transfer</h1>
       {error && <Alert variant="danger">{error}</Alert>}
 
       <Form onSubmit={handleSubmit} className="mb-4">
         <Row>
           <Col md={6} lg={5} className="mb-3">
             <Form.Group controlId="formFile1">
-              <Form.Label>Wybierz pierwszy obrazek (JPG/PNG)</Form.Label>
+              <Form.Label>Select the first image (JPG/PNG)</Form.Label>
               <Form.Control
                 type="file"
                 accept="image/jpeg, image/png"
@@ -67,7 +85,7 @@ function App() {
           </Col>
           <Col md={6} lg={5} className="mb-3">
             <Form.Group controlId="formFile2">
-              <Form.Label>Wybierz drugi obrazek (JPG/PNG)</Form.Label>
+              <Form.Label>Select the second image (JPG/PNG)</Form.Label>
               <Form.Control
                 type="file"
                 accept="image/jpeg, image/png"
@@ -78,10 +96,8 @@ function App() {
           <Col
             md={12}
             lg={2}
-            className="d-flex align-items-center "
-            style={{
-              paddingTop: "1rem",
-            }}
+            className="d-flex align-items-center"
+            style={{ paddingTop: "1rem" }}
           >
             <Button
               variant="primary"
@@ -89,7 +105,7 @@ function App() {
               disabled={loading}
               className="w-100"
             >
-              {loading ? "Przetwarzanie..." : "Przetwórz"}
+              {loading ? "Processing..." : "Process"}
             </Button>
           </Col>
         </Row>
@@ -97,9 +113,9 @@ function App() {
 
       <Row>
         <Col md={4} className="text-center mb-4">
-          <h5>Obrazek 1</h5>
+          <h5>Image 1</h5>
           {imageUrl1 ? (
-            <Image src={imageUrl1} alt="Obrazek 1" fluid />
+            <Image src={imageUrl1} alt="Image 1" fluid />
           ) : (
             <div
               style={{
@@ -109,15 +125,15 @@ function App() {
                 minHeight: "200px",
               }}
             >
-              Brak obrazu
+              No image
             </div>
           )}
         </Col>
 
         <Col md={4} className="text-center mb-4">
-          <h5>Obrazek 2</h5>
+          <h5>Image 2</h5>
           {imageUrl2 ? (
-            <Image src={imageUrl2} alt="Obrazek 2" fluid />
+            <Image src={imageUrl2} alt="Image 2" fluid />
           ) : (
             <div
               style={{
@@ -127,22 +143,22 @@ function App() {
                 minHeight: "200px",
               }}
             >
-              Brak obrazu
+              No image
             </div>
           )}
         </Col>
 
         <Col md={4} className="text-center mb-4">
-          <h5>Wynik</h5>
+          <h5>Result</h5>
           {loading ? (
             <div className="d-flex flex-column align-items-center">
               <Spinner animation="border" role="status" />
-              <span className="mt-2">Ładowanie...</span>
+              <span className="mt-2">Loading...</span>
             </div>
           ) : (
             <>
               {resultImage ? (
-                <Image src={resultImage} alt="Wynik" fluid />
+                <Image src={resultImage} alt="Result" fluid />
               ) : (
                 <div
                   style={{
@@ -152,7 +168,7 @@ function App() {
                     minHeight: "200px",
                   }}
                 >
-                  Brak wyniku
+                  No result
                 </div>
               )}
             </>
