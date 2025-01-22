@@ -1,0 +1,11 @@
+numpy
+Pillow
+protobuf
+six
+tensorboardX
+torch
+torchvision
+tqdm
+opencv-python
+imageio
+
