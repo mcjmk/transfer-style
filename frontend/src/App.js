@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
-  Container,
-  Row,
-  Col,
-  Form,
-  Button,
-  Spinner,
-  Image,
   Alert,
-} from 'react-bootstrap';
+  Button,
+  Col,
+  Container,
+  Form,
+  Image,
+  Row,
+  Spinner,
+} from "react-bootstrap";
 
 function App() {
   const [file1, setFile1] = useState(null);
@@ -17,35 +17,34 @@ function App() {
   const [imageUrl2, setImageUrl2] = useState(null);
   const [loading, setLoading] = useState(false);
   const [resultImage, setResultImage] = useState(null);
-  const [error, setError] = useState('');
-
+  const [error, setError] = useState("");
 
   const handleFileChange = (e, setFile, setImageUrl) => {
     const file = e.target.files[0];
-    if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
+    if (file && (file.type === "image/jpeg" || file.type === "image/png")) {
       setFile(file);
       setImageUrl(URL.createObjectURL(file));
-      setError('');
+      setError("");
     } else {
       setFile(null);
       setImageUrl(null);
-      setError('Proszę wybrać plik typu JPG lub PNG.');
+      setError("Proszę wybrać plik typu JPG lub PNG.");
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!file1 || !file2) {
-      setError('Proszę wybrać oba pliki.');
+      setError("Proszę wybrać oba pliki.");
       return;
     }
-    setError('');
+    setError("");
     setLoading(true);
     setResultImage(null);
 
     setTimeout(() => {
       setLoading(false);
-      setResultImage(process.env.PUBLIC_URL + '/result.jpg');
+      setResultImage(process.env.PUBLIC_URL + "/result.jpg");
     }, 10000);
   };
 
@@ -76,14 +75,21 @@ function App() {
               />
             </Form.Group>
           </Col>
-          <Col md={12} lg={2} className="d-flex align-items-end">
+          <Col
+            md={12}
+            lg={2}
+            className="d-flex align-items-center "
+            style={{
+              paddingTop: "1rem",
+            }}
+          >
             <Button
               variant="primary"
               type="submit"
               disabled={loading}
               className="w-100"
             >
-              {loading ? 'Przetwarzanie...' : 'Przetwórz'}
+              {loading ? "Przetwarzanie..." : "Przetwórz"}
             </Button>
           </Col>
         </Row>
@@ -97,10 +103,10 @@ function App() {
           ) : (
             <div
               style={{
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                padding: '20px',
-                minHeight: '200px',
+                border: "1px solid #ccc",
+                borderRadius: "4px",
+                padding: "20px",
+                minHeight: "200px",
               }}
             >
               Brak obrazu
@@ -115,10 +121,10 @@ function App() {
           ) : (
             <div
               style={{
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                padding: '20px',
-                minHeight: '200px',
+                border: "1px solid #ccc",
+                borderRadius: "4px",
+                padding: "20px",
+                minHeight: "200px",
               }}
             >
               Brak obrazu
@@ -140,10 +146,10 @@ function App() {
               ) : (
                 <div
                   style={{
-                    border: '1px solid #ccc',
-                    borderRadius: '4px',
-                    padding: '20px',
-                    minHeight: '200px',
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    padding: "20px",
+                    minHeight: "200px",
                   }}
                 >
                   Brak wyniku
