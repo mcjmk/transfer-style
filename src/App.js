@@ -51,14 +51,14 @@ function App() {
 
   return (
     <Container className="my-5">
-      <h1 className="mb-4">Trzy okienka: Dwa wejścia i wynik</h1>
+      <h1 className="mb-4">Transfer-Style</h1>
       {error && <Alert variant="danger">{error}</Alert>}
 
       <Form onSubmit={handleSubmit} className="mb-4">
         <Row>
           <Col md={6} lg={5} className="mb-3">
             <Form.Group controlId="formFile1">
-              <Form.Label>Wybierz pierwszy obrazek (JPG/PNG)</Form.Label>
+              <Form.Label>Select pierwszy obrazek (JPG/PNG)</Form.Label>
               <Form.Control
                 type="file"
                 accept="image/jpeg, image/png"
