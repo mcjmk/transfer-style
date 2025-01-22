@@ -115,7 +115,12 @@ function App() {
         <Col md={4} className="text-center mb-4">
           <h5>Image 1</h5>
           {imageUrl1 ? (
-            <Image src={imageUrl1} alt="Image 1" fluid />
+            <Image
+              className="image-fixed-size"
+              src={imageUrl1}
+              alt="Image 1"
+              fluid
+            />
           ) : (
             <div
               style={{
@@ -133,7 +138,12 @@ function App() {
         <Col md={4} className="text-center mb-4">
           <h5>Image 2</h5>
           {imageUrl2 ? (
-            <Image src={imageUrl2} alt="Image 2" fluid />
+            <Image
+              className="image-fixed-size"
+              src={imageUrl2}
+              alt="Image 2"
+              fluid
+            />
           ) : (
             <div
               style={{
@@ -158,7 +168,12 @@ function App() {
           ) : (
             <>
               {resultImage ? (
-                <Image src={resultImage} alt="Result" fluid />
+                <Image
+                  className="image-fixed-size"
+                  src={resultImage}
+                  alt="Result"
+                  fluid
+                />
               ) : (
                 <div
                   style={{
