@@ -10,7 +10,7 @@ from tensorboardX import SummaryWriter
 from torchvision import transforms
 from tqdm import tqdm
 
-import net
+import neural_net as neural_net
 from sampler import InfiniteSamplerWrapper
 
 cudnn.benchmark = True
@@ -85,12 +85,12 @@ log_dir = Path(args.log_dir)
 log_dir.mkdir(exist_ok=True, parents=True)
 writer = SummaryWriter(log_dir=str(log_dir))
 
-decoder = net.decoder
-vgg = net.vgg
+decoder = neural_net.decoder
+vgg = neural_net.vgg
 
 vgg.load_state_dict(torch.load(args.vgg))
 vgg = nn.Sequential(*list(vgg.children())[:31])
-network = net.Net(vgg, decoder)
+network = neural_net.Net(vgg, decoder)
 network.train()
 network.to(device)
 
@@ -128,7 +128,7 @@ for i in tqdm(range(args.max_iter)):
     writer.add_scalar('loss_style', loss_s.item(), i + 1)
 
     if (i + 1) % args.save_model_interval == 0 or (i + 1) == args.max_iter:
-        state_dict = net.decoder.state_dict()
+        state_dict = neural_net.decoder.state_dict()
         for key in state_dict.keys():
             state_dict[key] = state_dict[key].to(torch.device('cpu'))
         torch.save(state_dict, save_dir /

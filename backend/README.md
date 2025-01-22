@@ -16,7 +16,7 @@ requirements:
 ### Generate
 Use `--content` and `--style` to provide the respective path to the content and style image.
 ```
-python test.py --content input/content/img1.jpg --style input/style/img2.jpg
+python generate.py --content input/images/blonde_girl.jpg --style input/styles/woman_in_peasant_dress_cropped.jpg
 ```
 
 

@@ -5,8 +5,8 @@ import torch.nn as nn
 from PIL import Image
 from torchvision import transforms
 from torchvision.utils import save_image
-import net
-from net import adaptive_instance_normalization
+import neural_net as neural_net
+from neural_net import adaptive_instance_normalization
 
 
 def test_transform(size, crop):
@@ -39,7 +39,7 @@ def style_transfer(vgg, decoder, content, style,
 parser = argparse.ArgumentParser()
 # Basic options
 parser.add_argument('--content', type=str,
-                    help='File path to the content image')
+                    help='File path to the image')
 parser.add_argument('--content_dir', type=str,
                     help='Directory path to a batch of content images')
 parser.add_argument('--style', type=str,
@@ -92,8 +92,8 @@ else:
     style_dir = Path(args.style_dir)
     style_paths = [f for f in style_dir.glob('*')]
 
-decoder = net.decoder
-vgg = net.vgg
+decoder = neural_net.decoder
+vgg = neural_net.vgg
 
 decoder.eval()
 vgg.eval()
