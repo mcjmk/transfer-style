@@ -50,7 +50,9 @@ def run_style_transfer(
     decoder_model.eval()
     vgg_model.eval()
 
-    decoder_model.load_state_dict(torch.load("models/decoder.pth", weights_only=True))
+    decoder_model.load_state_dict(
+        torch.load("models/decoder_light.pth.tar", weights_only=True)
+    )
     vgg_model.load_state_dict(
         torch.load("models/vgg_normalised.pth", weights_only=True)
     )
@@ -63,8 +65,14 @@ def run_style_transfer(
     style_transform = transform_pipeline(style_size, crop)
 
     # Prepare images
-    content_image = content_transform(Image.open(content_path)).to(device).unsqueeze(0)
-    style_image = style_transform(Image.open(style_path)).to(device).unsqueeze(0)
+    content_image = (
+        content_transform(Image.open(content_path).convert("RGB"))
+        .to(device)
+        .unsqueeze(0)
+    )
+    style_image = (
+        style_transform(Image.open(style_path).convert("RGB")).to(device).unsqueeze(0)
+    )
 
     # Perform style transfer
     with torch.no_grad():

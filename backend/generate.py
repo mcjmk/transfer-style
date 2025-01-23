@@ -57,7 +57,7 @@ arg_parser.add_argument(
     "--style_dir", type=str, help="Path to a directory of style images"
 )
 arg_parser.add_argument("--vgg", type=str, default="models/vgg_normalised.pth")
-arg_parser.add_argument("--decoder", type=str, default="models/decoder.pth")
+arg_parser.add_argument("--decoder", type=str, default="models/decoder_light.pth.tar")
 
 # Additional options
 arg_parser.add_argument(
