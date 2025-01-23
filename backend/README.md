@@ -13,7 +13,7 @@ requirements:
 - tqdm
 - TensorboardX
 
-| You can just install all if you have conda with `conda create env -f environment.yml`
+| You can just install all if you have conda with `conda env create -f environment.yml`
 
 After installing, run with `uvicorn server:app --reload`.
 
