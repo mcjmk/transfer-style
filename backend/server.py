@@ -4,6 +4,19 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from generate_functional import run_style_transfer  # Import your refactored function
 import io
+from PIL import Image
+from torchvision import transforms
+
+
+def load_and_transform_image(image_path, transform, device):
+    """
+    Load and transform an image, ensuring it is converted to RGB.
+    """
+    # Load the image and ensure it is RGB
+    image = Image.open(image_path).convert("RGB")
+    # Apply transformations and send to device
+    return transform(image).to(device).unsqueeze(0)
+
 
 app = FastAPI()
 

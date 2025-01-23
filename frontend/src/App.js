@@ -47,7 +47,7 @@ function App() {
     formData.append("style_image", file2);
 
     try {
-      const response = await fetch("api/style-transfer/", {
+      const response = await fetch("/api/style-transfer/", {
         method: "POST",
         body: formData,
       });
@@ -113,7 +113,7 @@ function App() {
 
       <Row>
         <Col md={4} className="text-center mb-4">
-          <h5>Image 1</h5>
+          <h5>Content image</h5>
           {imageUrl1 ? (
             <Image
               className="image-fixed-size"
@@ -136,7 +136,7 @@ function App() {
         </Col>
 
         <Col md={4} className="text-center mb-4">
-          <h5>Image 2</h5>
+          <h5>Style Image</h5>
           {imageUrl2 ? (
             <Image
               className="image-fixed-size"
