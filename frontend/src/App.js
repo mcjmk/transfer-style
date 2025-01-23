@@ -47,7 +47,7 @@ function App() {
     formData.append("style_image", file2);
 
     try {
-      const response = await fetch("/api/style-transfer/", {
+      const response = await fetch("api/style-transfer/", {
         method: "POST",
         body: formData,
       });
