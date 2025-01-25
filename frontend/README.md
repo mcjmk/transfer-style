@@ -1,12 +1,11 @@
-# transfer-style
+ # Neural Style Transfer - Frontend
 
-[Edit in StackBlitz next generation editor ⚡️](https://stackblitz.com/~/github.com/mcjmk/transfer-style)
-
- 
-## Installation 
+## Installation using npm:
 ```bash
-git clone https://github.com/mcjmk/transfer-style.git
-cd transfer-style/frontend
 npm install
+```
+
+## Running:
+```bash
 npm start
-``````
+```
