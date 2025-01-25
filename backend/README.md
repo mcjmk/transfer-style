@@ -1,11 +1,8 @@
 # Neural Style Transfer - ADain
 
-Implementation of a paper, Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization [Huang+, ICCV2017].
+Implementation of a paper, Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization [Huang+, ICCV2017](https://arxiv.org/abs/1703.06868).
 
-## Requirements
-
-requirements:
-
+## Requirements:
 - Python 3.11.8
 - PyTorch newest
 - TorchVision
@@ -13,10 +10,15 @@ requirements:
 - tqdm
 - TensorboardX
 
-| You can just install all if you have conda with `conda env create -f environment.yml`
+## Installation using Conda:
+```bash
+conda env create -f environment.yml
+```
 
-After installing, run with `uvicorn server:app --reload`.
-
+## Running:
+```bash
+uvicorn server:app --reload
+```
 ## How to use backend (without web app)
 
 ### Generate
