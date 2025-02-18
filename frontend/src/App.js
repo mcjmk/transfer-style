@@ -47,19 +47,29 @@ function App() {
     formData.append("style_image", file2);
 
     try {
-      const response = await fetch("api/style-transfer/", {
+      const baseUrl = process.env.NODE_ENV === 'development' 
+        ? 'http://localhost:8000' 
+        : '';
+      
+      const response = await fetch(`${baseUrl}/style-transfer`, {
         method: "POST",
         body: formData,
+        headers: {
+          'Accept': 'application/json, image/jpeg',
+        },
       });
-
+  
       if (!response.ok) {
-        throw new Error("Failed to process the images. Please try again.");
+        const errorText = await response.text();
+        console.error('Response not OK:', response.status, errorText);
+        throw new Error(`Server error: ${response.status} ${errorText}`);
       }
-
+  
       const blob = await response.blob();
       const resultImageUrl = URL.createObjectURL(blob);
       setResultImage(resultImageUrl);
     } catch (err) {
+      console.error("Submission error:", err);
       setError(err.message);
     } finally {
       setLoading(false);

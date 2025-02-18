@@ -2,26 +2,31 @@ from fastapi import FastAPI, UploadFile, Form
 from fastapi.responses import StreamingResponse
 from pathlib import Path
 from tempfile import TemporaryDirectory
-from generate_functional import run_style_transfer  # Import your refactored function
+from generate_functional import run_style_transfer 
 import io
 from PIL import Image
 from torchvision import transforms
-
+from fastapi.middleware.cors import CORSMiddleware
 
 def load_and_transform_image(image_path, transform, device):
     """
     Load and transform an image, ensuring it is converted to RGB.
     """
-    # Load the image and ensure it is RGB
     image = Image.open(image_path).convert("RGB")
     # Apply transformations and send to device
     return transform(image).to(device).unsqueeze(0)
 
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"], 
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-
-@app.post("/style-transfer/")
+@app.post("/style-transfer")
 async def style_transfer_api(
     content_image: UploadFile,
     style_image: UploadFile,
@@ -30,7 +35,6 @@ async def style_transfer_api(
     crop: bool = Form(False),
 ):
     with TemporaryDirectory() as temp_dir:
-        # Save uploaded files
         content_path = Path(temp_dir) / content_image.filename
         style_path = Path(temp_dir) / style_image.filename
         with open(content_path, "wb") as f:
@@ -38,7 +42,6 @@ async def style_transfer_api(
         with open(style_path, "wb") as f:
             f.write(await style_image.read())
 
-        # Run style transfer
         output_path = run_style_transfer(
             str(content_path),
             str(style_path),
