@@ -1,39 +1,30 @@
-# Projektowe - transfer-style
-
-Reviewed: yes?
-
-# Temat projektu
+# Transfer Style
 
 Aplikacja sieciowa implementująca tzw. “transfer stylu” między dwoma obrazkami. 
 
-## Transfer Stylu
-
-Wcześniej wspomniany transfer stylu polega na generacji obrazu na podstawie dwóch obrazów, przesłanych przez użytkownika. Wygenerowany obraz w założeniu będzie łączył charakterystyczne cechy jednego z nich (np. charakterystyczne kształty) ze stylem drugiego.
+Polega on na generacji obrazu na podstawie dwóch obrazów, przesłanych przez użytkownika. Wygenerowany obraz w założeniu będzie łączył charakterystyczne cechy jednego z nich (np. charakterystyczne kształty) ze stylem drugiego.
 
 ### Algorytm uczenia maszynowego
 
-Planujemy wykorzystać algorytm uczenia głębokiego, opartego o architekturę encoder-decoder.
+Wykorzystujemy algorytm uczenia głębokiego, opartego o architekturę encoder(VGG) i decoder.
 Algorytm wzorowany jest na architekturze AdaIN z artykułu "Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization"[Huang+, ICCV2017].
 
 ### Trenowanie modelu
 
-W celu trenowania modelu wykorzystamy dwa zbiory danych, dostępne w internecie
-
-- COCO (Common objects in context) - zbiór zdjęć ponad 100k zdjęć, które wykorzystamy do nauczenia modelu rozpoznawania złożonych struktur (czyli będą przesyłane w modelu jako obraz, z którego chcemy pozyskać charkaterystyczne cechu).
-- WikiArt - zbiór ponad 80k obrazów, których
+W celu trenowania modelu wykorzystaliśmy datasety :
+- WikiArt - zbiór ok. 42 000 obrazów w różnych stylach, ponad 190 artystów 
+- dataset MSCOCO (MicroSoft Common objects in context) - zbiór zdjęć ponad 100k zdjęć, które wykorzystamy do nauczenia modelu rozpoznawania złożonych struktur (czyli będą przesyłane w modelu jako obraz, z którego chcemy pozyskać charkaterystyczne cechu).
 
 ## Aplikacja sieciowa
 
-Zamierzamy stworzyć prostą aplikację webową, w której użytkownik poprzez interfejs graficzny będzie mógł zażądać wygenerowanie obrazu na podstawie dwóch obrazów. 
+Projekt ma formę aplikacji webowej, w której użytkownik poprzez interfejs graficzny będzie mógł zażądać wygenerowanie obrazu na podstawie dwóch obrazów wybranych z plików w komputerze. Pierwszy to obraz konwertowany a drugi to obraz reprezentujący styl jaki chcemy wykorzystać do transferu.
 
 ### Frontend
-
-Zamierzamy stworzyć interfejs użytkownika, wykorzystując framework [React lub Angular co wolicie].
-
-Ma on pozwolić na wybranie dwóch obrazów z dysku użytkownika, pogląd wybranych zdjęć oraz na wyświetlenie wygenerowanego obrazu.
+React Framework (Javascript).
 
 ### Backend
+FastApi (Python).
 
-Przewidujemy także stworzenie prostego serwisu, który w założeniu przyjmuje obrazy przesłane przez użytkownika przy użyciu aplikacji frontendowej, i “odesłaniu” wygenrowanego obrazu. 
+### Model
+Sieć Neuronowa zbudowana przy pomocy PyTorch.
 
-Serwis ten jest potrzebny aby uniknąć kosztownych operacji po stronie klienta oraz ułatwieniu implementacji aplikacji.
