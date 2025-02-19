@@ -1,5 +1,3 @@
-# rewrite of generare.py to make it a bit more modal
-
 import argparse
 from pathlib import Path
 import torch

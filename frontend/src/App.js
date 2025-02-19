@@ -126,7 +126,7 @@ function App() {
           <h5>Content image</h5>
           {imageUrl1 ? (
             <Image
-              className="image-fixed-size"
+              className="image"
               src={imageUrl1}
               alt="Image 1"
               fluid
@@ -138,6 +138,7 @@ function App() {
                 borderRadius: "4px",
                 padding: "20px",
                 minHeight: "200px",
+                maxHeight: "360px",
               }}
             >
               No image
@@ -149,7 +150,7 @@ function App() {
           <h5>Style Image</h5>
           {imageUrl2 ? (
             <Image
-              className="image-fixed-size"
+              className="image"
               src={imageUrl2}
               alt="Image 2"
               fluid
@@ -161,6 +162,7 @@ function App() {
                 borderRadius: "4px",
                 padding: "20px",
                 minHeight: "200px",
+                maxHeight: "360px",
               }}
             >
               No image
@@ -179,7 +181,7 @@ function App() {
             <>
               {resultImage ? (
                 <Image
-                  className="image-fixed-size"
+                  className="image"
                   src={resultImage}
                   alt="Result"
                   fluid
@@ -191,6 +193,7 @@ function App() {
                     borderRadius: "4px",
                     padding: "20px",
                     minHeight: "200px",
+                    maxHeight: "360px",
                   }}
                 >
                   No result
