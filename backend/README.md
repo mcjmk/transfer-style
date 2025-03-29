@@ -29,9 +29,8 @@ uvicorn server:app --reload
 ### Generate
 
 Use `--content` and `--style` to provide the respective path to the content and style image.
-```bash
-python generate.py --content path/to/content.jpg --style path/to/style.jpg
-```
+
+
 Example: 
 ```bash
 python generate_functional.py --content input/images/blonde_girl.jpg --style input/styles/woman_in_peasant_dress_cropped.jpg
