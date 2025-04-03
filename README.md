@@ -1,30 +1,42 @@
 # Transfer Style
 
-Aplikacja sieciowa implementująca tzw. “transfer stylu” między dwoma obrazkami. 
+Web application that transforms images by applying artistic styles using deep learning. Based on the paper [Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization](https://arxiv.org/abs/1703.06868).
 
-Polega on na generacji obrazu na podstawie dwóch obrazów, przesłanych przez użytkownika. Wygenerowany obraz w założeniu będzie łączył charakterystyczne cechy jednego z nich (np. charakterystyczne kształty) ze stylem drugiego.
+## Prerequisites
 
-### Algorytm uczenia maszynowego
+- Node.js (v14 or higher)
+- Python 3.11
+- Conda (Miniconda or Anaconda)
 
-Wykorzystujemy algorytm uczenia głębokiego, opartego o architekturę encoder(VGG) i decoder.
-Algorytm wzorowany jest na architekturze AdaIN z artykułu "Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization"[Huang+, ICCV2017].
+## Installation
 
-### Trenowanie modelu
+### Backend Setup
+```bash
+cd backend
+conda env create -f environment.yml
+conda activate transfer-style
+uvicorn server:app --reload
+```
 
-W celu trenowania modelu wykorzystaliśmy datasety :
-- WikiArt - zbiór ok. 42 000 obrazów w różnych stylach, ponad 190 artystów 
-- dataset MSCOCO (MicroSoft Common objects in context) - zbiór zdjęć ponad 100k zdjęć, które wykorzystamy do nauczenia modelu rozpoznawania złożonych struktur (czyli będą przesyłane w modelu jako obraz, z którego chcemy pozyskać charkaterystyczne cechu).
+### Frontend Setup
+```bash
+cd frontend
+npm install
+npm start
+```
 
-## Aplikacja sieciowa
+## Usage
+1. Open `http://localhost:3000`
+2. Upload content image
+3. Upload style image
+4. Click "Generate"
 
-Projekt ma formę aplikacji webowej, w której użytkownik poprzez interfejs graficzny będzie mógł zażądać wygenerowanie obrazu na podstawie dwóch obrazów wybranych z plików w komputerze. Pierwszy to obraz konwertowany a drugi to obraz reprezentujący styl jaki chcemy wykorzystać do transferu.
+## Tech Stack
 
-### Frontend
-React Framework (Javascript).
+- Backend: FastAPI + PyTorch
+- Frontend: React + Bootstrap
+- Model: AdaIN architecture trained on WikiArt and MSCOCO datasets
 
-### Backend
-FastApi (Python).
+## Acknowledgments
 
-### Model
-Sieć Neuronowa zbudowana przy pomocy PyTorch.
-
+Based on the work of Huang et al. (ICCV 2017) and uses pre-trained VGG models.
