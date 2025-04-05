@@ -47,24 +47,23 @@ function App() {
     formData.append("style_image", file2);
 
     try {
-      const baseUrl = process.env.NODE_ENV === 'development' 
-        ? 'http://localhost:8000' 
-        : '';
-      
+      const baseUrl =
+        process.env.NODE_ENV === "development" ? "http://localhost:8000" : "";
+
       const response = await fetch(`${baseUrl}/style-transfer`, {
         method: "POST",
         body: formData,
         headers: {
-          'Accept': 'application/json, image/jpeg',
+          Accept: "application/json, image/jpeg",
         },
       });
-  
+
       if (!response.ok) {
         const errorText = await response.text();
-        console.error('Response not OK:', response.status, errorText);
+        console.error("Response not OK:", response.status, errorText);
         throw new Error(`Server error: ${response.status} ${errorText}`);
       }
-  
+
       const blob = await response.blob();
       const resultImageUrl = URL.createObjectURL(blob);
       setResultImage(resultImageUrl);
@@ -125,12 +124,7 @@ function App() {
         <Col md={4} className="text-center mb-4">
           <h5>Content image</h5>
           {imageUrl1 ? (
-            <Image
-              className="image"
-              src={imageUrl1}
-              alt="Image 1"
-              fluid
-            />
+            <Image className="image" src={imageUrl1} alt="Image 1" fluid />
           ) : (
             <div
               style={{
@@ -149,12 +143,7 @@ function App() {
         <Col md={4} className="text-center mb-4">
           <h5>Style Image</h5>
           {imageUrl2 ? (
-            <Image
-              className="image"
-              src={imageUrl2}
-              alt="Image 2"
-              fluid
-            />
+            <Image className="image" src={imageUrl2} alt="Image 2" fluid />
           ) : (
             <div
               style={{
@@ -180,12 +169,7 @@ function App() {
           ) : (
             <>
               {resultImage ? (
-                <Image
-                  className="image"
-                  src={resultImage}
-                  alt="Result"
-                  fluid
-                />
+                <Image className="image" src={resultImage} alt="Result" fluid />
               ) : (
                 <div
                   style={{
