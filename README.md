@@ -31,6 +31,20 @@ npm start
 3. Upload style image
 4. Click "Generate"
 
+## Code Quality
+
+This project uses Ruff for linting and formatting Python code.
+
+To lint your code:
+```bash
+ruff check .
+```
+
+To format your code:
+```bash
+ruff format .
+```
+
 ## Tech Stack
 
 - Backend: FastAPI + PyTorch
