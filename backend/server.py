@@ -2,11 +2,11 @@ from fastapi import FastAPI, UploadFile, Form
 from fastapi.responses import StreamingResponse
 from pathlib import Path
 from tempfile import TemporaryDirectory
-from generate_functional import run_style_transfer 
+from generate_functional import run_style_transfer
 import io
 from PIL import Image
-from torchvision import transforms
 from fastapi.middleware.cors import CORSMiddleware
+
 
 def load_and_transform_image(image_path, transform, device):
     """
@@ -20,11 +20,12 @@ def load_and_transform_image(image_path, transform, device):
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"], 
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 @app.post("/style-transfer")
 async def style_transfer_api(
