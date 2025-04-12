@@ -46,4 +46,6 @@ npm start
 
 ## Acknowledgments
 
-Based on the work of Huang et al. (ICCV 2017) and uses pre-trained VGG models.
+Based on the work of Huang et al. (ICCV 2017)[http://www.robots.ox.ac.uk/~vgg/publications/2014_09_hierarchical.pdf
+
+ and uses pre-trained VGG models.
