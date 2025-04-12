@@ -2,6 +2,11 @@
 
 Web application that transforms images by applying artistic styles using deep learning. Based on the paper [Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization](https://arxiv.org/abs/1703.06868).
 
+## Example result
+
+![example result of transfer style](docs/image.png)
+
+
 ## Prerequisites
 
 - Node.js (v14 or higher)
@@ -34,10 +39,6 @@ npm start
 3. Upload style image
 4. Click "Generate"
 
-## Example result
-
-![example result of transfer style](docs/image.png)
-
 ## Tech Stack
 
 - Backend: FastAPI + PyTorch
@@ -46,6 +47,4 @@ npm start
 
 ## Acknowledgments
 
-Based on the work of Huang et al. (ICCV 2017)[http://www.robots.ox.ac.uk/~vgg/publications/2014_09_hierarchical.pdf
-
- and uses pre-trained VGG models.
+Based on [the work of Huang et al. (ICCV 2017)](https://openaccess.thecvf.com/content_iccv_2017/html/Huang_Arbitrary_Style_Transfer_ICCV_2017_paper.html) and uses [pre-trained VGG models](https://pytorch.org/vision/stable/models.html#vgg).
