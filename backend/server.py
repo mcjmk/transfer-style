@@ -5,7 +5,6 @@ from tempfile import TemporaryDirectory
 from generate_functional import run_style_transfer 
 import io
 from PIL import Image
-from torchvision import transforms
 from fastapi.middleware.cors import CORSMiddleware
 
 def load_and_transform_image(image_path, transform, device):
