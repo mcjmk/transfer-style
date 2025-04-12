@@ -1,11 +1,13 @@
- # Neural Style Transfer - Frontend
+# Neural Style Transfer - Frontend
 
-## Installation using npm:
+## Installation using npm
+
 ```bash
 npm install
 ```
 
-## Running:
+## Running
+
 ```bash
 npm start
 ```
