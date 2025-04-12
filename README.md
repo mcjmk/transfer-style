@@ -11,6 +11,7 @@ Web application that transforms images by applying artistic styles using deep le
 ## Installation
 
 ### Backend Setup
+
 ```bash
 cd backend
 conda env create -f environment.yml
@@ -19,6 +20,7 @@ uvicorn server:app --reload
 ```
 
 ### Frontend Setup
+
 ```bash
 cd frontend
 npm install
@@ -26,10 +28,15 @@ npm start
 ```
 
 ## Usage
+
 1. Open `http://localhost:3000`
 2. Upload content image
 3. Upload style image
 4. Click "Generate"
+
+## Example result
+
+![example result of transfer style](docs/image.png)
 
 ## Tech Stack
 
